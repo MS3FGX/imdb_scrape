@@ -1,4 +1,4 @@
-![IMDB](http://www.digifail.com/images/misc/github/imdb_logo.jpg "IMDB Logo")
+![IMDB](http://www.digifail.com/images/misc/github/imdb_logo_sm.jpg "IMDB Logo")
 
 imdb_scrape
 ==============
