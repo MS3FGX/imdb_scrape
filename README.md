@@ -28,10 +28,10 @@ Requirements
 
 This script requires a number of common Unix tools:
 
-#### sed
-#### awk
-#### wget
-#### grep
+* sed
+* awk
+* wget
+* grep
 
 Every Unix/Linux distribution should include these tools, or at the very least,
 have a way for you to easily install them.

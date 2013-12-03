@@ -26,7 +26,13 @@ SCAN_DELAY=15
 # Delete files after processing
 KEEP_FILES=0
 
+# Configuration file, overrides above settings
+CONFIG_FILE="scrape.conf"
+
 #------------------------No need to edit past this line------------------------#
+
+# Source external file to override local config
+. $CONFIG_FILE
 
 # URL parts
 URL_BASE="http://www.imdb.com/title/tt"

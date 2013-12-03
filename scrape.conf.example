@@ -1,0 +1,16 @@
+# Config variables for imdb_scrape
+#
+# Starting title
+TT_START=71000
+
+# Ending title
+TT_END=71500
+
+# Keyword
+KEYWORD='alien\|UFO'
+
+# Output file
+LOG_FILE="70's_alien_movies.txt"
+
+# Delay in seconds
+SCAN_DELAY=20
