@@ -139,7 +139,7 @@ for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 	[ $KEEP_FILES -eq 0 ] && rm -f $TMP_DIR/*$TT_CUR
 
 	# Delay next fetch	
-	sleep $SCAN_DELAY
+	[ $TT_CUR -ne $TT_END ] && sleep $SCAN_DELAY
 done
 ;;
 esac
