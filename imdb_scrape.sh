@@ -132,7 +132,7 @@ for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 	fi
 	
 	# Delete file
-	[ $KEEP_FILES -eq 0 ] && rm -r $TMP_DIR/*$TT_CUR
+	[ $KEEP_FILES -eq 0 ] && rm -f $TMP_DIR/*$TT_CUR
 
 	# Delay next fetch	
 	sleep $SCAN_DELAY

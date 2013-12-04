@@ -1,3 +1,6 @@
+12/04/13:
+	Fix rm statement
+
 12/02/13:
 	Add support for external config file
 	Example config file added
