@@ -115,8 +115,12 @@ for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 
 	# Download pages for current title
 	echo -n "Fetching title $TT_CUR: "
-	wget -q $URL_BASE$TT_CUR$PAGE1 -O $TMP_DIR/PARENT$TT_CUR
-	wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
+	if wget -q $URL_BASE$TT_CUR$PAGE1 -O $TMP_DIR/PARENT$TT_CUR ; then
+		wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
+	else
+		echo "404 Page"
+		continue
+	fi 
 	# Get and display movie title
 	GetTitle
 	echo -n $TITLE
