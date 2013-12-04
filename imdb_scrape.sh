@@ -113,7 +113,7 @@ echo
 # Loop through range
 for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 
-	# Download parent's guide page for current title
+	# Download pages for current title
 	echo -n "Fetching title $TT_CUR: "
 	wget -q $URL_BASE$TT_CUR$PAGE1 -O $TMP_DIR/PARENT$TT_CUR
 	wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
@@ -131,7 +131,7 @@ for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 		echo
 	fi
 	
-	# Delete file
+	# Delete files
 	[ $KEEP_FILES -eq 0 ] && rm -f $TMP_DIR/*$TT_CUR
 
 	# Delay next fetch	
