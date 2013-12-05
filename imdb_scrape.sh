@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # imdb_scrape: Search user-submitted IMDB data for keywords.
-VER="1.0"
+VER="1.1"
 #
 # This software is released under the BSD 3-Clause license. See the included
 # file "LICENSE" for more information.
@@ -107,8 +107,8 @@ clear
 CheckSys 0
 echo "imdb_scrape $VER"
 echo "----------------"
-echo "Start: $TT_START"
-echo "End: $TT_END"
+echo "Term: $KEYWORD"
+echo "Titles: $TT_START through $TT_END"
 echo
 # Loop through range
 for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
