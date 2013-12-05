@@ -1,5 +1,9 @@
-12/04/13:
+12/04/13: Released as version 1.1
+	Gracefully handle 404 pages
+	Skip delay on last fetch
+	Improved boilerplate
 	Fix rm statement
+	Fix comments
 
 12/02/13:
 	Add support for external config file
