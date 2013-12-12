@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # imdb_scrape: Search user-submitted IMDB data for keywords.
-VER="1.1"
+VER="1.2"
 #
 # This software is released under the BSD 3-Clause license. See the included
 # file "LICENSE" for more information.
@@ -28,6 +28,9 @@ KEEP_FILES=0
 
 # Number of 404's to accept before exiting
 ERR_LIMIT=5
+
+# Make sure page is valid IMDB entry before processing
+IMDB_CHECK=0
 
 # Configuration file, overrides above settings
 CONFIG_FILE="scrape.conf"
@@ -94,6 +97,12 @@ GetTitle ()
 TITLE=`grep "<title>" $TMP_DIR/PARENT$TT_CUR | awk -F"[>,<]" '{ print $3 }' | sed 's/.\{16\}$//'`
 }
 
+VerifyIMDB ()
+{
+# Verify the page we are looking at is actually from IMDB
+grep -iq "imdb" $TMP_DIR/PARENT$TT_CUR || ErrorMsg ERR "nNot an IMDB page!"
+}
+
 #---------------------------Execution starts here------------------------------#
 case $1 in
 'check')
@@ -129,10 +138,13 @@ for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 		fi
 		continue
 	fi 
+	# See if this is an IMDB page
+	[ $IMDB_CHECK -eq 1 ] && VerifyIMDB
+
 	# Get and display movie title
 	GetTitle
-	echo -n $TITLE
-	
+	echo -n $TITLE	
+
 	# Run through grep
 	if grep -iq $KEYWORD $TMP_DIR/*$TT_CUR ; then
 		# Match found!
