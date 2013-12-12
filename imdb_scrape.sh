@@ -26,6 +26,9 @@ SCAN_DELAY=15
 # Delete files after processing
 KEEP_FILES=0
 
+# Number of 404's to accept before exiting
+ERR_LIMIT=5
+
 # Configuration file, overrides above settings
 CONFIG_FILE="scrape.conf"
 
@@ -119,6 +122,11 @@ for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 		wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
 	else
 		echo "404 Page"
+		((ERR_COUNT++))
+		if [ $ERR_COUNT -eq $ERR_LIMIT ] ; then
+			ErrorMsg ERR "Too many 404 pages, exiting."
+			exit
+		fi
 		continue
 	fi 
 	# Get and display movie title
