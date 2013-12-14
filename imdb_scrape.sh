@@ -194,7 +194,7 @@ do
 	fi
 
 	# Merge together
-	cat $TMP_DIR/IMDB_TMP* > $TMP_DIR/TITLE_$TT_CUR || ErrorMsg ERR "nFiles not found!"
+	cat $TMP_DIR/IMDB_TMP* > $TMP_DIR/TITLE_$TT_CUR 2>/dev/null || ErrorMsg ERR "Files not found!"
 done < $LOG_FILE
 echo "Complete"
 ;;
