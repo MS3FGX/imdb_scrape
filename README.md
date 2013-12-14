@@ -25,6 +25,35 @@ will happen to you.
 If you decide to use this software anyway, make use of the SCAN_DELAY option
 in the configuration to wait a reasonable time before requesting a new page.
 
+Functions
+==============
+
+Running imdb_scrape with no arguments will start it in default mode, which
+searches IMDB based on the parameters setup in either the external
+configuration file or the script's internal configuration section.
+
+In addition, there are a few other functions which can be accessed by typing
+the function name after the script. They are:
+
+#### download
+This function will read a previously created file of matching movies, and
+download their pages. This function should be used if you intend on doing any
+local processing of the files, removing the need to repeatedly pull the files
+down from IMDB.
+
+#### process
+This function attempts to trim and condense the local files to make them more
+manageable. It will remove a lot of the HTML from the downloaded files, and
+merge them together into one file per movie which contains just (more or less)
+the user-content.
+
+#### clean
+Remove the downloaded files. This will not remove the files created with the
+"process" function, only the raw HTML which was saved with "download".
+
+#### help
+A quick intro to the script and listing of available functions.
+
 Requirements
 ==============
 

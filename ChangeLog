@@ -1,7 +1,10 @@
-12/14/13:
+12/14/13: Released as version 1.3
 	Push more code into its own functions
 	Fix issue with movie titles that have commas
 	Added "Download" mode
+	Added "Process" mode
+	Added help screen
+	Updated docs
 
 12/12/13: Released as version 1.2
 	Exit after user-defined number of 404 pages.

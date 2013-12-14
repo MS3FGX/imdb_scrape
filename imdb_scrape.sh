@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # imdb_scrape: Search user-submitted IMDB data for keywords.
-VER="1.2"
+VER="1.3"
 #
 # This software is released under the BSD 3-Clause license. See the included
 # file "LICENSE" for more information.
