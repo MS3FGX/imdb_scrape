@@ -91,6 +91,23 @@ VerifyCmd $1 wget
 [ $? -eq 1 ] && ErrorMsg ERR "wget not found! Install to continue."
 }
 
+DownloadPage ()
+{
+# Download the pages for TT_CUR
+echo -n "Fetching title $TT_CUR: "
+if wget -q $URL_BASE$TT_CUR$PAGE1 -O $TMP_DIR/PARENT$TT_CUR ; then
+	wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
+else
+	echo "404 Page"
+	((ERR_COUNT++))
+	if [ $ERR_COUNT -eq $ERR_LIMIT ] ; then
+		ErrorMsg ERR "Too many 404 pages, exiting."
+		exit
+	fi
+		continue
+fi 
+}
+
 GetTitle ()
 {
 # Return current movie title
@@ -126,18 +143,8 @@ echo
 for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 
 	# Download pages for current title
-	echo -n "Fetching title $TT_CUR: "
-	if wget -q $URL_BASE$TT_CUR$PAGE1 -O $TMP_DIR/PARENT$TT_CUR ; then
-		wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
-	else
-		echo "404 Page"
-		((ERR_COUNT++))
-		if [ $ERR_COUNT -eq $ERR_LIMIT ] ; then
-			ErrorMsg ERR "Too many 404 pages, exiting."
-			exit
-		fi
-		continue
-	fi 
+	DownloadPage
+
 	# See if this is an IMDB page
 	[ $IMDB_CHECK -eq 1 ] && VerifyIMDB
 
