@@ -139,6 +139,44 @@ echo "Removing old temp files..."
 rm -f $TMP_DIR/PARENT*
 rm -f $TMP_DIR/REVIEW*
 ;;
+'process')
+StartUp
+echo "Reading from: $LOG_FILE" 
+echo "Processing files from: $TMP_DIR"
+echo
+# Loop through file
+while read LINE
+do
+	# Read current title #
+	TT_CUR=`echo $LINE | awk -F: '{print $1}'`
+	echo "Processing $LINE"
+
+	# Remove old temp files
+	rm -f $TMP_DIR/IMDB_TMP*
+	
+	# Check for parent's guide and process
+	if [ -s $TMP_DIR/PARENT$TT_CUR ] ; then
+		# Remove all lines before help link
+		sed -i '1,/ParentalGuideHelp/d' $TMP_DIR/PARENT$TT_CUR
+
+		# Remove lines after "Report Problem", put into new file
+		sed -n '/Report a problem/q;p' $TMP_DIR/PARENT$TT_CUR > $TMP_DIR/IMDB_TMP1
+	fi
+
+	# Check for review and process
+	if [ -s $TMP_DIR/REVIEW$TT_CUR ] ; then
+		# Remove all lines before first horizonal bar
+		sed -i '1,/<hr size="1" noshade="1">/d' $TMP_DIR/REVIEW$TT_CUR
+
+		# Remove lines after second bar, put into new file
+		sed -n '/<hr size="1" noshade="1">/q;p' $TMP_DIR/REVIEW$TT_CUR > $TMP_DIR/IMDB_TMP2
+	fi
+
+	# Merge together
+	cat $TMP_DIR/IMDB_TMP* > $TMP_DIR/TITLE_$TT_CUR || ErrorMsg ERR "nFiles not found!"
+done < $LOG_FILE
+echo "Complete"
+;;
 'download')
 StartUp
 echo "Reading from: $LOG_FILE" 
@@ -157,7 +195,7 @@ do
 	DownloadPage
 	
 	# Delay next fetch	
-	[ $TT_CUR -ne $TT_END ] && sleep $SCAN_DELAY
+	sleep $SCAN_DELAY
 done < $LOG_FILE
 ;;
 *)
