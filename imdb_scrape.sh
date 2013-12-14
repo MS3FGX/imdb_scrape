@@ -139,6 +139,27 @@ echo "Removing old temp files..."
 rm -f $TMP_DIR/PARENT*
 rm -f $TMP_DIR/REVIEW*
 ;;
+'help')
+clear
+echo "imdb_scrape $VER"
+echo "----------------"
+echo "This script can be used to search the user-submitted data on IMDB.com for"
+echo "specific keywords and phrases. The name of each movie that matches the"
+echo "search terms will be written to the log file, along with the movie's"
+echo "IMDB ID number."
+echo
+echo "Optionally, the script can save the matching pages, trimming and condensing"
+echo "them down to a single file for each movie."
+echo
+echo "WARNING!"
+echo "Use of this script is in direct violation of the IMDB Terms of Use."
+echo
+echo "The available arguments as of version $VER are as follows:"
+echo "download   - Read the log file and download corresponding pages"
+echo "process    - Trim down and merge pages into one file per movie"
+echo "clean      - Remove downloaded files"
+echo "help       - What you are reading now"
+;;
 'process')
 StartUp
 echo "Reading from: $LOG_FILE" 
