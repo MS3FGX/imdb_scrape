@@ -91,6 +91,15 @@ VerifyCmd $1 wget
 [ $? -eq 1 ] && ErrorMsg ERR "wget not found! Install to continue."
 }
 
+StartUp ()
+{
+# Sys check, boilerplate
+clear
+CheckSys 0
+echo "imdb_scrape $VER"
+echo "----------------"
+}
+
 DownloadPage ()
 {
 # Download the pages for TT_CUR
@@ -132,10 +141,7 @@ rm -f $TMP_DIR/PARENT*
 rm -f $TMP_DIR/REVIEW*
 ;;
 *)
-clear
-CheckSys 0
-echo "imdb_scrape $VER"
-echo "----------------"
+StartUp
 echo "Term: $KEYWORD"
 echo "Titles: $TT_START through $TT_END"
 echo

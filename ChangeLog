@@ -1,5 +1,5 @@
 12/14/13:
-	Put page download code into its own function
+	Push more code into its own functions
 
 12/12/13: Released as version 1.2
 	Exit after user-defined number of 404 pages.
