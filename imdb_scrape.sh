@@ -120,7 +120,7 @@ fi
 GetTitle ()
 {
 # Return current movie title
-TITLE=`grep "<title>" $TMP_DIR/PARENT$TT_CUR | awk -F"[>,<]" '{ print $3 }' | sed 's/.\{16\}$//'`
+TITLE=`grep "<title>" $TMP_DIR/PARENT$TT_CUR | awk -F"[><]" '{ print $3 }' | sed 's/.\{16\}$//'`
 }
 
 VerifyIMDB ()

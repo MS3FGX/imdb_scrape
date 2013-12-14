@@ -1,5 +1,6 @@
 12/14/13:
 	Push more code into its own functions
+	Fix issue with movie titles that have commas
 
 12/12/13: Released as version 1.2
 	Exit after user-defined number of 404 pages.
