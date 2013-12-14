@@ -103,7 +103,6 @@ echo "----------------"
 DownloadPage ()
 {
 # Download the pages for TT_CUR
-echo -n "Fetching title $TT_CUR: "
 if wget -q $URL_BASE$TT_CUR$PAGE1 -O $TMP_DIR/PARENT$TT_CUR ; then
 	wget -q $URL_BASE$TT_CUR$PAGE2 -O $TMP_DIR/REVIEW$TT_CUR
 else
@@ -140,6 +139,27 @@ echo "Removing old temp files..."
 rm -f $TMP_DIR/PARENT*
 rm -f $TMP_DIR/REVIEW*
 ;;
+'download')
+StartUp
+echo "Reading from: $LOG_FILE" 
+echo "Downloading pages to: $TMP_DIR"
+echo
+# Loop through file
+while read LINE
+do
+	# Read current title #
+	TT_CUR=`echo $LINE | awk -F: '{print $1}'`
+
+	# Display entry
+	echo $LINE
+
+	# Download pages for current title
+	DownloadPage
+	
+	# Delay next fetch	
+	[ $TT_CUR -ne $TT_END ] && sleep $SCAN_DELAY
+done < $LOG_FILE
+;;
 *)
 StartUp
 echo "Term: $KEYWORD"
@@ -149,6 +169,7 @@ echo
 for((TT_CUR=$TT_START;TT_CUR<=$TT_END;++TT_CUR)) do
 
 	# Download pages for current title
+	echo -n "Fetching title $TT_CUR: "
 	DownloadPage
 
 	# See if this is an IMDB page
