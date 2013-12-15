@@ -1,3 +1,7 @@
+12/15/13:
+	Warn on missing files during process
+	Improve error handling on merge
+
 12/14/13: Released as version 1.3
 	Push more code into its own functions
 	Fix issue with movie titles that have commas

@@ -182,6 +182,8 @@ do
 
 		# Remove lines after "Report Problem", put into new file
 		sed -n '/Report a problem/q;p' $TMP_DIR/PARENT$TT_CUR > $TMP_DIR/IMDB_TMP1
+	else
+		ErrorMsg WRN "Parents Guide not found."
 	fi
 
 	# Check for review and process
@@ -191,6 +193,8 @@ do
 
 		# Remove lines after second bar, put into new file
 		sed -n '/<hr size="1" noshade="1">/q;p' $TMP_DIR/REVIEW$TT_CUR > $TMP_DIR/IMDB_TMP2
+	else
+		ErrorMsg WRN "Reviews not found."
 	fi
 
 	# Merge together
