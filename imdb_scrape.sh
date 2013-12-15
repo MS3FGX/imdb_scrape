@@ -138,6 +138,7 @@ CheckSys 1
 echo "Removing old temp files..."
 rm -f $TMP_DIR/PARENT*
 rm -f $TMP_DIR/REVIEW*
+rm -f $TMP_DIR/IMDB_TMP*
 ;;
 'help')
 clear
