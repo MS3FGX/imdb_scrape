@@ -178,8 +178,8 @@ do
 	
 	# Check for parent's guide and process
 	if [ -s $TMP_DIR/PARENT$TT_CUR ] ; then
-		# Remove all lines before help link
-		sed -i '1,/ParentalGuideHelp/d' $TMP_DIR/PARENT$TT_CUR
+		# Remove all lines before first parent's guide category
+		sed -i '1,/Sex &amp; Nudity/d' $TMP_DIR/PARENT$TT_CUR
 
 		# Remove lines after "Report Problem", put into new file
 		sed -n '/Report a problem/q;p' $TMP_DIR/PARENT$TT_CUR > $TMP_DIR/IMDB_TMP1
